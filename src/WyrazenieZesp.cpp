@@ -4,9 +4,8 @@ using namespace std;
 
 
 
-ostream & operator << (ostream & wyj, Operator Op)
+ostream & operator << (ostream & wyj, Operator Op)          //Wyswietlanie operatora pomiedzy liczbami zespolonymi
 {
-
 	switch(Op)
 	{							
 		case Op_Dodaj:
@@ -52,7 +51,7 @@ istream & operator >> (istream & wej, Operator &Op)
 			Op = Op_Dziel;
 			return wej;
 		default:
-			Op = Bledny_znak;
+			wej.setstate(ios::failbit);
 			return wej;
 	}
 }
@@ -87,6 +86,5 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ)
 		default:
 			exit(0);
 	}
-
 }
 
