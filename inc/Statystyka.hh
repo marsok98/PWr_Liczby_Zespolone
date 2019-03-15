@@ -1,6 +1,7 @@
 #ifndef STATYSTYKA_HH
 #define STATYSTYKA_HH
 #include "LZespolona.hh"
+#include "WyrazenieZesp.hh"
 
 
 struct Statystyka_odpowiedzi {
@@ -10,6 +11,8 @@ struct Statystyka_odpowiedzi {
 };
 
 void Wyswietl(Statystyka_odpowiedzi Statystyka );
+
+void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_PytanieTestowe);
 
 
 #endif
