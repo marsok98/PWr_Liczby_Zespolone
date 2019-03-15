@@ -4,35 +4,6 @@
 using namespace std;
 
 
-istream & wczytaj_i_sprawdz_znak(istream &wej,char znak_prawidlowy)
-{
-	char znak;
-	wej>>znak;
-	if(znak != znak_prawidlowy)
-	{
-		wej.setstate(ios::failbit);
-		return wej;
-	}
-
-	return wej;
-}
-
-istream & wczytaj_sprawdz_zapisz_liczbe(istream &wej, double &liczba)
-{
-	double temp;
-	wej >> temp;
-	if(wej.fail())
-		return wej;
-	else
-	{
-		liczba = temp;
-		return wej;
-	}
-}
-
-
-
-
 ostream & operator << (ostream & wyj, LZespolona Skl1)
 {
 	wyj<<"("<<Skl1.re<<showpos<<Skl1.im<<"i)"<<noshowpos;
@@ -137,3 +108,28 @@ bool operator == (LZespolona Prawidlowa, LZespolona Do_Porownania)
 }
 
 
+istream & wczytaj_i_sprawdz_znak(istream &wej,char znak_prawidlowy)
+{
+	char znak;
+	wej>>znak;
+	if(znak != znak_prawidlowy)
+	{
+		wej.setstate(ios::failbit);
+		return wej;
+	}
+
+	return wej;
+}
+
+istream & wczytaj_sprawdz_zapisz_liczbe(istream &wej, double &liczba)
+{
+	double temp;
+	wej >> temp;
+	if(wej.fail())
+		return wej;
+	else
+	{
+		liczba = temp;
+		return wej;
+	}
+}

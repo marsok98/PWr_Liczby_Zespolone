@@ -28,6 +28,8 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char*  sNazwaTestu );
  */
 bool PobierzNastepnePytanie( BazaTestu  *wskBazaTestu,  WyrazenieZesp *wskWyr );
 
+void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_PytanieTestowe);
+
 void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka);
 
 #endif

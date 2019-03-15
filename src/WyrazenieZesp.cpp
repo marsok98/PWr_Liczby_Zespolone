@@ -70,7 +70,6 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ)
 	LZespolona Wynik;
 	switch(WyrZ.Op)
 	{          								 //W zaleznosci od uzytego operatora oblicza wartosci wyrazen
-
 		case Op_Dodaj:
 			Wynik = WyrZ.Arg1 + WyrZ.Arg2;
 			return Wynik;

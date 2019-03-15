@@ -39,6 +39,8 @@ LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2);
 
 bool 	    operator == (LZespolona Prawidlowa, LZespolona Do_Porownania);
 
+istream & wczytaj_i_sprawdz_znak(istream &wej,char znak_prawidlowy);
+istream & wczytaj_sprawdz_zapisz_liczbe(istream &wej, double &liczba);
 
 
 #endif

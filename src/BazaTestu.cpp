@@ -98,8 +98,6 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
   }  
 }
 
-
-
 /*!
  * Funkcja udostepnia nastepne pytania o ile jest odpowiednia ich ilosc.
  * Parametry:
@@ -130,33 +128,72 @@ bool PobierzNastepnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazen
 
 
 
+void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_PytanieTestowe)
+{
+  
+  LZespolona Poprawny_Wynik;
+  LZespolona Odp_Uzytkownika;
+  Statystyka.ilosc_dzialan++;
+
+  cout<<"\n:? Podaj wynik operacji: ";
+  cout<<WyrZ_PytanieTestowe;
+
+  Poprawny_Wynik = Oblicz(WyrZ_PytanieTestowe);
+
+  cout<<"\n   Twoja odpowiedz: ";
+  cin>>Odp_Uzytkownika;
+  for(int i = 2; i>=1 && cin.fail() ; i--)
+  {
+    cin.clear();
+    cin.ignore(1000,'\n');
+    cout<<"Blad zapisu liczby,";
+    cout<<" sprobuj jeszcze raz\n";
+    cout<<"Zostalo jeszcze: "<<i<<" prob\n";
+    cout<<"Twoja odpowiedz: ";
+    cin>>Odp_Uzytkownika;
+  }
+    cin.clear();
+    if(Poprawny_Wynik == Odp_Uzytkownika)
+    {
+      Statystyka.ilosc_poprawnych++;
+      cout<<":) Odpowiedz poprawna\n";
+    }
+    else
+    { 
+      cout<<":( Blad. Poprawny Wynik to: ";
+      cout<<Poprawny_Wynik;
+      cout<<endl;
+    }
+}
+
 void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka)
 {
-    fstream plik;
-    string nazwa_pliku;
-    WyrazenieZesp WyrZ_PytanieTestowe;
-    cout<<"Podaj nazwe pliku do odczytania: ";
-    cin>>nazwa_pliku;
-    cout<<endl;
-    plik.open(nazwa_pliku,ios::in);
-    if(!plik.good())
-    {
-      cerr<<"Blad otwarcia pliku\n";
-      exit(0);
-    }
+  fstream plik;
+  string nazwa_pliku;
+  WyrazenieZesp WyrZ_PytanieTestowe;
+  cout<<"Podaj nazwe pliku do odczytania: ";
+  cin>>nazwa_pliku;
+  cout<<endl;
+  plik.open(nazwa_pliku,ios::in);
+  if(!plik.good())
+  {
+    cerr<<"Blad otwarcia pliku\n";
+    exit(0);
+  }
 
-    while(!plik.eof()){
-        plik>>WyrZ_PytanieTestowe;
-        if(plik.fail())
-        {
-          cerr<<"\nNapotkano bledne wyrazenie, zostalo ono pominiete\n";
-          plik.clear();
-          plik.ignore(1000,'\n');
-        }
-        else
-        {
-          ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
-        }
-    }
-    plik.close();
+  while(!plik.eof())
+  {
+    plik>>WyrZ_PytanieTestowe;
+      if(plik.fail())
+      {
+        cerr<<"\nNapotkano bledne wyrazenie, zostalo ono pominiete\n";
+        plik.clear();
+        plik.ignore(1000,'\n');
+      }
+      else
+      {
+        ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
+      }
+  } 
+  plik.close();
 }

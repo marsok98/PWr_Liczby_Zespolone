@@ -1,8 +1,9 @@
 #include <iostream>
+#include <cstring>
 #include "BazaTestu.hh"
 #include "Statystyka.hh"
-#include <cstring>
-#include <cassert>
+
+
 
 
 using namespace std;
@@ -50,10 +51,6 @@ int main(int argc, char **argv)
     Test_z_Pliku(Statystyka);
   }
 
-  cout << endl;
-  cout << " Koniec testu" << endl;
-  cout << endl;
   Wyswietl(Statystyka);
   
-
 }
