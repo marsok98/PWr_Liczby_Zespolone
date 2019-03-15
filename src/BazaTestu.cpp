@@ -130,31 +130,33 @@ bool PobierzNastepnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazen
 
 
 
-/*void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka, WyrazenieZesp WyrZ_PytanieTestowe)
+void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka)
 {
-  fstream plik;
-  string nazwa_pliku;
-  cin>>nazwa_pliku;
-  plik.open(nazwa_pliku,ios::in);
-  if(!plik.good())
-  {
-    cerr<<"Blad otwarcia pliku\n";
-    exit(0);
-  }
+    fstream plik;
+    string nazwa_pliku;
+    WyrazenieZesp WyrZ_PytanieTestowe;
+    cout<<"Podaj nazwe pliku do odczytania: ";
+    cin>>nazwa_pliku;
+    cout<<endl;
+    plik.open(nazwa_pliku,ios::in);
+    if(!plik.good())
+    {
+      cerr<<"Blad otwarcia pliku\n";
+      exit(0);
+    }
 
-  while(!plik.eof()){
-      plik>>WyrZ_PytanieTestowe;
-      if(plik.fail())
-      {
-        cerr<<"\nNapotkano bledne wyrazenie, zostalo ono pominiete\n";
-        plik.clear();
-        plik.ignore(1000,'\n');
-      }
-      else
-      {
-        ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
-      }
-  }
-  plik.close();
+    while(!plik.eof()){
+        plik>>WyrZ_PytanieTestowe;
+        if(plik.fail())
+        {
+          cerr<<"\nNapotkano bledne wyrazenie, zostalo ono pominiete\n";
+          plik.clear();
+          plik.ignore(1000,'\n');
+        }
+        else
+        {
+          ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
+        }
+    }
+    plik.close();
 }
-*/

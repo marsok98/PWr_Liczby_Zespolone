@@ -10,7 +10,7 @@ struct Statystyka_odpowiedzi {
 	unsigned int procent;
 };
 
-void Wyswietl(Statystyka_odpowiedzi Statystyka );
+void Wyswietl(Statystyka_odpowiedzi Statystyka);
 
 void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_PytanieTestowe);
 

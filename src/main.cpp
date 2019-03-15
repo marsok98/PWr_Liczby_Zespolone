@@ -1,7 +1,6 @@
 #include <iostream>
 #include "BazaTestu.hh"
 #include "Statystyka.hh"
-#include <fstream>
 #include <cstring>
 #include <cassert>
 
@@ -17,7 +16,7 @@ int main(int argc, char **argv)
   if (argc < 2) {
     cout << endl;
     cout << " Brak opcji okreslajacej rodzaj testu." << endl;
-    cout << " Dopuszczalne nazwy to:  latwy, trudny." << endl;
+    cout << " Dopuszczalne nazwy to:  latwy, trudny, plik." << endl;
     cout << endl;
     return 1;
   }
@@ -46,20 +45,15 @@ int main(int argc, char **argv)
     while (PobierzNastepnePytanie(&BazaT,&WyrZ_PytanieTestowe))
       ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
   }
+  else
+  {
+    Test_z_Pliku(Statystyka);
+  }
 
-
-  
-  
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;
   Wyswietl(Statystyka);
-  
-
-  
-
-
-
   
 
 }
