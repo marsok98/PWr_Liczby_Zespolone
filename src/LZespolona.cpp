@@ -13,6 +13,7 @@ istream & wczytaj_i_sprawdz_znak(istream &wej,char znak_prawidlowy)
 		wej.setstate(ios::failbit);
 		return wej;
 	}
+
 	return wej;
 }
 
@@ -47,7 +48,7 @@ istream & operator >> (istream & wej, LZespolona &Skl1)
 										
 	wczytaj_sprawdz_zapisz_liczbe(wej,Skl1.re);
 
-	wczytaj_sprawdz_zapisz_liczbe(wej,Skl1.re);
+	wczytaj_sprawdz_zapisz_liczbe(wej,Skl1.im);
 	
 	wczytaj_i_sprawdz_znak(wej,'i');
 
