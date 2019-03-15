@@ -1,7 +1,7 @@
 #include <iostream>
 #include "BazaTestu.hh"
 #include "Statystyka.hh"
-
+#include <fstream>
 using namespace std;
 
 
@@ -37,29 +37,38 @@ int main(int argc, char **argv)
   Statystyka_odpowiedzi Statystyka = {0,0,0};
 
   
-  
+  /*
   while (PobierzNastepnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
     ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
   }
+  
   
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;
   Wyswietl(Statystyka);
-//Test dla wczytania calego wyrazenia zespolonego z konsoli a nastepnie obliczenie go
-/*
-  cout<<"Podaj dzialanie a podam wynik"<<endl;
-  cin>>WyrZ_PytanieTestowe;
-  while(WyrZ_PytanieTestowe.Op == Bledny_znak)
-  {
-    cin.clear();
-    cin.ignore(1000,'\n');
-    cout<<"Zostal wpisany nieprawidlowy znak\n";
-    cin>>WyrZ_PytanieTestowe;
-  }
-  Poprawny_Wynik = Oblicz(WyrZ_PytanieTestowe);
-  cout<<Poprawny_Wynik;
-  cout<<endl;
   */
+
+  fstream plik;
+  plik.open("plik.txt",ios::in);
+
+  while(!plik.eof()){
+      plik>>WyrZ_PytanieTestowe;
+      if(plik.fail())
+      {
+        cerr<<"\nNapotkano bledne wyrazenie, zostalo ono pominiete\n";
+        plik.clear();
+        plik.ignore(1000,'\n');
+      }
+      else
+      {
+        ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
+      }
+    }
+  Wyswietl(Statystyka);
+
+
+
+  
 
 }

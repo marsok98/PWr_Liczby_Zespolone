@@ -54,8 +54,7 @@ istream & operator >> (istream & wej, LZespolona &Skl1)
 
 	wczytaj_i_sprawdz_znak(wej,')');
 
-	wej.ignore(1000,'\n');
-	
+
 	return wej;
 }
 
