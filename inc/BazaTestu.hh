@@ -3,6 +3,7 @@
 
 
 #include "WyrazenieZesp.hh"
+#include "Statystyka.hh"
 
 
 /*
@@ -26,5 +27,7 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char*  sNazwaTestu );
  * Udostepnia nastepne pytanie z bazy.
  */
 bool PobierzNastepnePytanie( BazaTestu  *wskBazaTestu,  WyrazenieZesp *wskWyr );
+
+//void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka, WyrazenieZesp WyrZ_PytanieTestowe)
 
 #endif

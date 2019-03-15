@@ -1,7 +1,9 @@
 #include <iostream>
 #include <cstring>
 #include <cassert>
+#include <fstream>
 #include "BazaTestu.hh"
+
 
 using namespace std;
 
@@ -85,9 +87,15 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
     UstawTest(wskBazaTestu,TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
     return true;
   }
- 
-  cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
-  return false;
+  else if (!strcmp(sNazwaTestu, "plik"))
+  {
+    return true;
+  }
+  else
+  {
+    cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
+    return false;
+  }  
 }
 
 
@@ -119,3 +127,34 @@ bool PobierzNastepnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazen
   ++wskBazaTestu->IndeksPytania;
   return true;
 }
+
+
+
+/*void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka, WyrazenieZesp WyrZ_PytanieTestowe)
+{
+  fstream plik;
+  string nazwa_pliku;
+  cin>>nazwa_pliku;
+  plik.open(nazwa_pliku,ios::in);
+  if(!plik.good())
+  {
+    cerr<<"Blad otwarcia pliku\n";
+    exit(0);
+  }
+
+  while(!plik.eof()){
+      plik>>WyrZ_PytanieTestowe;
+      if(plik.fail())
+      {
+        cerr<<"\nNapotkano bledne wyrazenie, zostalo ono pominiete\n";
+        plik.clear();
+        plik.ignore(1000,'\n');
+      }
+      else
+      {
+        ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
+      }
+  }
+  plik.close();
+}
+*/
