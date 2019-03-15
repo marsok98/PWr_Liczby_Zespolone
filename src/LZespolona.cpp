@@ -3,18 +3,38 @@
 #include <iomanip>
 using namespace std;
 
+
+istream & wczytaj_i_sprawdz_znak(istream &wej,char znak_prawidlowy)
+{
+	char znak;
+	wej>>znak;
+	if(znak != znak_prawidlowy)
+	{
+		wej.setstate(ios::failbit);
+		return wej;
+	}
+	return wej;
+}
+
+istream & wczytaj_sprawdz_zapisz_liczbe(istream &wej, double &liczba)
+{
+	double temp;
+	wej >> temp;
+	if(wej.fail())
+		return wej;
+	else
+	{
+		liczba = temp;
+		return wej;
+	}
+}
+
+
+
+
 ostream & operator << (ostream & wyj, LZespolona Skl1)
 {
-	if(Skl1.re == 0)
-		wyj<<"("<<Skl1.im<<"i)";
-	else if(Skl1.im == 0)
-		wyj<<"("<<Skl1.re<<")";
-	else if(Skl1.im == 1)
-		wyj<<"("<<Skl1.re<<"+i)";
-	else if(Skl1.im == -1)
-		wyj<<"("<<Skl1.re<<"-i)";
-	else
-		wyj<<"("<<Skl1.re<<showpos<<Skl1.im<<"i)"<<noshowpos;
+	wyj<<"("<<Skl1.re<<showpos<<Skl1.im<<"i)"<<noshowpos;
 	return wyj;
 }
 
@@ -22,51 +42,17 @@ ostream & operator << (ostream & wyj, LZespolona Skl1)
 
 istream & operator >> (istream & wej, LZespolona &Skl1)
 {
-	char znak;
-	double wczytana;
 
-	wej >> znak;
+	wczytaj_i_sprawdz_znak(wej,'(');
+										
+	wczytaj_sprawdz_zapisz_liczbe(wej,Skl1.re);
+
+	wczytaj_sprawdz_zapisz_liczbe(wej,Skl1.re);
 	
-	if(wej.fail())
-		return wej;
+	wczytaj_i_sprawdz_znak(wej,'i');
 
-	if(znak != '(')
-	{
-		wej.setstate(ios::failbit);
-		return wej;
-	}
+	wczytaj_i_sprawdz_znak(wej,')');
 
-	wej >> wczytana;
-	if(wej.fail())
-		return wej;
-
-	Skl1.re = wczytana;
-
-	wej >> wczytana;
-	if(wej.fail())
-		return wej;
-
-	Skl1.im = wczytana;
-
-	wej >> znak;
-	if(wej.fail())
-		return wej;
-
-	if(znak != 'i')
-	{
-		wej.setstate(ios::failbit);
-		return wej;
-	}
-
-	wej >> znak;
-	if(wej.fail())
-		return wej;
-
-	if(znak != ')')
-	{
-		wej.setstate(ios::failbit);
-		return wej;
-	}
 	return wej;
 }
 
