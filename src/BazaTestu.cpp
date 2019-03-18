@@ -20,10 +20,10 @@ static WyrazenieZesp  TestLatwy[] =
 
 
 static WyrazenieZesp TestTrudny[] = 
-  { {{2.66,9.77},     Op_Dodaj,   {2.44,88.54}},
-    {{8.44,7.22},     Op_Odejmij, {7.45,44.66}},
-    {{567.22,78.72},  Op_Mnoz,    {55.78,123.66}},
-    {{723.55,1234.6}, Op_Dziel,   {45.72,164.88}},
+  { {{2.5,9.5},     Op_Dodaj,   {2.5,7.5}},
+    {{8.5,10.5},     Op_Odejmij, {7.5,11.5}},
+    {{6.5,45.5},  Op_Mnoz,    {25.5,50}},
+    {{25.50,1234}, Op_Dziel,   {25.50,1234}},
   };
 
 

@@ -4,6 +4,7 @@ FLAGS= -Wall -pedantic -std=c++14 -iquote inc
 
 start: ${TRGDIR}/test_arytm_zesp
 	
+	
 
 ${TRGDIR}/test_arytm_zesp: ${OBJ} ${OBJ}/main.o ${OBJ}/LZespolona.o\
                      ${OBJ}/WyrazenieZesp.o ${OBJ}/BazaTestu.o     \
