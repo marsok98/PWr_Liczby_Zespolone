@@ -28,8 +28,16 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char*  sNazwaTestu );
  */
 bool PobierzNastepnePytanie( BazaTestu  *wskBazaTestu,  WyrazenieZesp *wskWyr );
 
+/* 
+ * Realizuje obsluge pytan w postaci pobierania pytania z bazy, obliczenia go, pobranie odpowiedzi uzytkownika
+ * Sprawdzenie tej odpowiedzi oraz obsluga statystyki
+ */
 void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_PytanieTestowe);
 
+
+/*
+ * Realizuje wczytywanie wyrazen z pliku tekstowego
+ */
 void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka);
 
 #endif

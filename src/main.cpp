@@ -41,14 +41,14 @@ int main(int argc, char **argv)
   Statystyka_odpowiedzi Statystyka = {0,0,0};
 
   
-  if(strcmp(argv[1], "plik"))
+  if(strcmp(argv[1], "plik"))                    //porownanie nazwy wpisanej przez uzytkownika do "plik"
   {
     while (PobierzNastepnePytanie(&BazaT,&WyrZ_PytanieTestowe))
       ObslugaPytan(Statystyka,WyrZ_PytanieTestowe);
   }
   else
   {
-    Test_z_Pliku(Statystyka);
+    Test_z_Pliku(Statystyka);                  //jesli napis wpisany jest rowny "plik" to zacznij test z pliku
   }
 
   Wyswietl(Statystyka);

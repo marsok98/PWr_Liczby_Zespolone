@@ -24,7 +24,7 @@ ostream & operator << (ostream & wyj, Operator Op)          //Wyswietlanie opera
 	return wyj;
 }
 
-ostream & operator << (ostream & wyj, WyrazenieZesp WyrZ)
+ostream & operator << (ostream & wyj, WyrazenieZesp WyrZ)	//Przekazuje na strumien wyjsciowy WyrazenieZesp
 {
 	wyj<<WyrZ.Arg1;
 	wyj<<WyrZ.Op;
@@ -32,7 +32,7 @@ ostream & operator << (ostream & wyj, WyrazenieZesp WyrZ)
 	return wyj;
 }
 
-istream & operator >> (istream & wej, Operator &Op)
+istream & operator >> (istream & wej, Operator &Op)        //Wczytuje operator Op z strumienia wejsciowego
 {
 	char temp;
 	wej>>temp;
@@ -51,12 +51,12 @@ istream & operator >> (istream & wej, Operator &Op)
 			Op = Op_Dziel;
 			return wej;
 		default:
-			wej.setstate(ios::failbit);
-			return wej;
+			wej.setstate(ios::failbit);						//jesli podany znak nie jest operatorem arytmetycznym
+			return wej;										//to ustaw failbit
 	}
 }
 
-istream & operator >> (istream & wej, WyrazenieZesp &WyrZ)
+istream & operator >> (istream & wej, WyrazenieZesp &WyrZ)  //wczytuje WyrazenieZesp z strumienia wejsciowego
 {
 	wej>>WyrZ.Arg1;
 	wej>>WyrZ.Op;
@@ -69,7 +69,7 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ)
 {
 	LZespolona Wynik;
 	switch(WyrZ.Op)
-	{          								 //W zaleznosci od uzytego operatora oblicza wartosci wyrazen
+	{          								 				//W zaleznosci od uzytego operatora oblicza wartosci wyrazen
 		case Op_Dodaj:
 			Wynik = WyrZ.Arg1 + WyrZ.Arg2;
 			return Wynik;

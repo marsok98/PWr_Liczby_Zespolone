@@ -68,7 +68,7 @@ void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned in
  *      - Parametr wskBazaTestu nie moze byc pustym wskaznikiem. Musi zawierac adres
  *        zmiennej reprezentujacej baze testu, ktora wczesniej zostal poprawnie
  *        zainicjalizowany poprzez wywolanie funkcji InicjalizujTest.
- *      - Parametr sNazwaTestu musi wskazywac na jedna z nazw tzn. "latwe" lub "trudne".
+ *      - Parametr sNazwaTestu musi wskazywac na jedna z nazw tzn. "latwe" lub "trudne" lub "plik".
  *       
  * Zwraca:
  *       true - gdy operacja sie powiedzie i test zostanie poprawnie
@@ -128,6 +128,22 @@ bool PobierzNastepnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazen
 
 
 
+
+/*
+ * Procedura realizujaca obsluge pytan testowych
+ * Wyswietla pytanie testowe
+ * Oblicza
+ * Wczytuje odpowiedz uzytkownika
+ * Jesli jest ona nie poprawna skladniowo to daje 3 krotna szanse na wpisanie odpowiedzi
+ * Jesli jest poprawna skladniowo to nalezy sprawdzic czy zgadza sie z poprawna odpowiedzia obliczona wczesniej
+ *    Jesli odpowiedz jest poprawna to uzytkownikowi zostaje przyznany jeden punkt
+      Jesli nie, informujemy uzytkownika o blednej odpowiedzi i wyswietlamy prawidlowa 
+
+
+ * Warunki wstepne:
+        -Referencja do struktury Statystyka_odpowiedzi
+        -Kopia WyrazenieZesp bo oryginal jest nam niepotrzebny
+*/
 void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_PytanieTestowe)
 {
   
@@ -142,7 +158,8 @@ void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_Pytanie
 
   cout<<"\n   Twoja odpowiedz: ";
   cin>>Odp_Uzytkownika;
-  for(int i = 2; i>=1 && cin.fail() ; i--)
+  cin.ignore(1000,'\n');
+  for(int i = 2; i>=1 && cin.fail() ; i--)                //Dopoki sa proby i cin jest w stanie fail
   {
     cin.clear();
     cin.ignore(1000,'\n');
@@ -166,6 +183,16 @@ void ObslugaPytan(Statystyka_odpowiedzi & Statystyka, WyrazenieZesp WyrZ_Pytanie
     }
 }
 
+/*Procedura realizujaca czytanie wyrazen zespolonych z pliku 
+ * Uzytkownik musi podac nazwe pliku do wczytania
+ * Sprawdzenie poprawnosci otwarcia
+ * Kontrola poprawnosci wczytywania wyrazen z pliku
+ * Zadawanie pytan testowych zgodnie z procedura ObslugaPytan
+ 
+ * Warunki wstepne:
+      -Referencja do struktury Statystyka_odpowiedzi
+ */
+
 void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka)
 {
   fstream plik;
@@ -181,7 +208,7 @@ void Test_z_Pliku(Statystyka_odpowiedzi &Statystyka)
     exit(0);
   }
 
-  while(!plik.eof())
+  while(!plik.eof())                              //jesli plik jeszcze sie nie skonczyl
   {
     plik>>WyrZ_PytanieTestowe;
       if(plik.fail())
